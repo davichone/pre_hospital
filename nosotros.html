@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nosotros · EmergenciasTech</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    /* ==========================================
+   0. TOKENS (idénticos a index.html)
+   ========================================== */
+    :root {
+      --ink: #0E3A52;
+      --ink-2: #164864;
+      --paper: #FFFFFF;
+      --paper-2: #FFFFFF;
+      --paper-tint: #EAF4F9;
+      --sky: #6DB6D9;
+      --sky-deep: #3E8FB8;
+      --accent: #FF7A55;
+      --accent-2: #FF9271;
+      --care: #3E8FB8;
+      --text-dark: #12283A;
+      --text-muted: #57707F;
+      --text-on-ink: #D9EAF2;
+      --line: rgba(14, 58, 82, 0.14);
+      --line-on-ink: rgba(217, 234, 242, 0.18);
+
+      --font-display: 'Space Grotesk', sans-serif;
+      --font-body: 'IBM Plex Sans', sans-serif;
+      --font-mono: 'IBM Plex Mono', monospace;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--text-dark);
+      background: var(--paper);
+      line-height: 1.6;
+    }
+
+    ::selection {
+      background: var(--sky);
+      color: #fff;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 5%;
+    }
+
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--sky-deep);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--sky);
+      box-shadow: 0 0 0 4px rgba(109, 182, 217, 0.25);
+    }
+
+    .eyebrow.on-ink {
+      color: var(--sky);
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: var(--font-display);
+      color: var(--ink);
+      line-height: 1.15;
+    }
+
+    .section-head {
+      max-width: 640px;
+      margin-bottom: 3rem;
+    }
+
+    .section-head h2 {
+      font-size: clamp(1.9rem, 3vw, 2.5rem);
+    }
+
+    .section-head p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      margin-top: 0.9rem;
+    }
+
+    .section-head.on-ink h2 {
+      color: #fff;
+    }
+
+    .section-head.on-ink p {
+      color: var(--text-on-ink);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.85rem 1.7rem;
+      border-radius: 3px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .btn-accent {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .btn-accent:hover {
+      background: var(--accent-2);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(255, 122, 85, 0.32);
+    }
+
+    /* ==========================================
+   1. HEADER (idéntico a index.html)
+   ========================================== */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--ink);
+      border-bottom: 1px solid var(--line-on-ink);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.9rem 5%;
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+    .logo img{height:38px; filter:brightness(0) invert(1);}
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .logo-mark {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      background: var(--sky);
+      border-radius: 6px;
+      color: var(--ink);
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    .logo-word {
+      font-family: var(--font-display);
+      font-weight: 700;
+      color: #fff;
+      font-size: 1.15rem;
+      letter-spacing: -0.01em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.2rem;
+    }
+
+    .nav-links a {
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 1.4rem;
+      color: var(--text-on-ink);
+      position: relative;
+      padding-bottom: 4px;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: var(--sky);
+      transition: width 0.25s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-links a.active {
+      color: #fff;
+    }
+
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: 1px solid var(--line-on-ink);
+      color: var(--text-on-ink);
+      width: 40px;
+      height: 40px;
+      border-radius: 4px;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    /* ==========================================
+   2. BANNER DE PÁGINA
+   ========================================== */
+    .page-hero {
+      background: var(--ink);
+      padding: 3.4rem 5% 3.8rem;
+    }
+
+    .breadcrumb {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--text-on-ink);
+      opacity: 0.7;
+      margin-bottom: 1.2rem;
+    }
+
+    .breadcrumb a {
+      color: var(--sky);
+    }
+
+    .page-hero h1 {
+      color: #fff;
+      font-size: clamp(2rem, 3.6vw, 2.9rem);
+      max-width: 680px;
+      margin-bottom: 1rem;
+    }
+
+    .page-hero p {
+      color: var(--text-on-ink);
+      font-size: 1.08rem;
+      max-width: 560px;
+    }
+
+    /* ==========================================
+   3. MISIÓN Y VISIÓN
+   ========================================== */
+ /*    .mv-section {
+      padding: 6rem 0;
+      background: var(--paper);
+    }
+ */
+
+.mv-section {
+  padding: 6rem 0;
+  /* Ruta de tu imagen de fondo */
+  background-image: url('img/difuminado.png'); 
+  background-size: cover; /* Hace que la imagen cubra toda la sección */
+  background-position: center; /* Centra la imagen */
+  background-repeat: no-repeat; /* Evita que la imagen se repita */
+}
+
+    .mv-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.8rem;
+    }
+
+    .mv-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 14px;
+      padding: 2.8rem 2.5rem;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .mv-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .mv-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+    }
+
+    .mv-card-mission {
+      background: var(--ink);
+      box-shadow: 0 20px 40px rgba(14, 58, 82, 0.18);
+    }
+
+    .mv-card-mission::before {
+      background: var(--sky);
+    }
+
+    .mv-card-mission:hover {
+      box-shadow: 0 24px 48px rgba(14, 58, 82, 0.28);
+    }
+
+    .mv-card-vision {
+      background: var(--paper-tint);
+      border: 1px solid var(--line);
+    }
+
+    .mv-card-vision::before {
+      background: var(--accent);
+    }
+
+    .mv-card-vision:hover {
+      box-shadow: 0 20px 40px rgba(14, 58, 82, 0.1);
+    }
+
+    .mv-watermark {
+      position: absolute;
+      bottom: -26px;
+      right: -18px;
+      width: 150px;
+      height: 150px;
+      opacity: 0.07;
+      pointer-events: none;
+    }
+
+    .mv-card-mission .mv-watermark {
+      color: #fff;
+    }
+
+    .mv-card-vision .mv-watermark {
+      color: var(--ink);
+    }
+
+    .mv-tag {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      letter-spacing: 0.1em;
+      margin-bottom: 1.4rem;
+      display: block;
+      position: relative;
+      z-index: 1;
+    }
+
+    .mv-card-mission .mv-tag {
+      color: var(--sky);
+    }
+
+    .mv-card-vision .mv-tag {
+      color: var(--sky-deep);
+    }
+
+    .mv-icon {
+      width: 58px;
+      height: 58px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .mv-card-mission .mv-icon {
+      background: var(--sky);
+      color: var(--ink);
+    }
+
+    .mv-card-vision .mv-icon {
+      background: var(--ink);
+      color: var(--sky);
+    }
+
+    .mv-icon svg {
+      width: 27px;
+      height: 27px;
+    }
+
+    .mv-card h3 {
+      font-size: 1.55rem;
+      margin-bottom: 0.9rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .mv-card-mission h3 {
+      color: #fff;
+    }
+
+    .mv-card-vision h3 {
+      color: var(--ink);
+    }
+
+    .mv-card p {
+      font-size: 1.02rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .mv-card-mission p {
+      color: var(--text-on-ink);
+    }
+
+    .mv-card-vision p {
+      color: var(--text-muted);
+    }
+
+    /* ==========================================
+   4. NUESTRO RESPALDO
+   ========================================== */
+    .backing-section {
+      background: var(--ink);
+      padding: 6rem 0;
+    }
+
+    .backing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.6rem;
+      margin-top: 1rem;
+    }
+
+    .backing-card {
+      background: var(--ink-2);
+      border: 1px solid var(--line-on-ink);
+      border-radius: 12px;
+      padding: 2.4rem 2rem;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .backing-card:hover {
+      border-color: var(--sky);
+      transform: translateY(-4px);
+    }
+
+    .backing-figure {
+      display: flex;
+      align-items: baseline;
+      gap: 0.4rem;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 3rem;
+      color: var(--sky);
+      line-height: 1;
+      margin-bottom: 1.2rem;
+    }
+
+    .backing-figure small {
+      font-family: var(--font-mono);
+      font-weight: 500;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-on-ink);
+      opacity: 0.75;
+    }
+
+    .backing-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: rgba(109, 182, 217, 0.15);
+      border: 1px solid rgba(109, 182, 217, 0.4);
+      color: var(--sky);
+      display: grid;
+      place-items: center;
+      margin-bottom: 1.2rem;
+    }
+
+    .backing-icon svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .backing-card h4 {
+      color: #fff;
+      font-size: 1.12rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .backing-card p {
+      color: var(--text-on-ink);
+      opacity: 0.85;
+      font-size: 0.96rem;
+    }
+
+    /* ==========================================
+   5. METODOLOGÍA (carrusel automático)
+   ========================================== */
+    .method-section {
+      padding: 6rem 0 6.5rem;
+      background: var(--paper-tint);
+    }
+
+    .method-head {
+      margin-bottom: 2.8rem;
+    }
+
+    .method-marquee {
+      overflow: hidden;
+      -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 4%, #000 96%, transparent 100%);
+      mask-image: linear-gradient(90deg, transparent 0, #000 4%, #000 96%, transparent 100%);
+    }
+
+    .method-track {
+      display: flex;
+      align-items: flex-start;
+      width: max-content;
+      animation: method-scroll 42s linear infinite;
+    }
+
+    .method-marquee:hover .method-track {
+      animation-play-state: paused;
+    }
+
+    @keyframes method-scroll {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    @media (prefers-reduced-motion:reduce) {
+      .method-track {
+        animation: none;
+      }
+    }
+
+    .method-step {
+      flex: 0 0 250px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 0 1.1rem;
+    }
+
+    .method-connector {
+      flex: 0 0 34px;
+      align-self: flex-start;
+      margin-top: 24px;
+      color: var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .method-connector svg {
+      width: 26px;
+      height: 12px;
+    }
+
+    .method-badge {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      margin-bottom: 0.9rem;
+      position: relative;
+    }
+
+    .method-badge svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .method-step:nth-child(4n+1) .method-badge {
+      background: var(--ink);
+    }
+
+    .method-step:nth-child(4n+3) .method-badge {
+      background: var(--sky-deep);
+    }
+
+    .method-num {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      color: var(--sky-deep);
+      margin-bottom: 0.5rem;
+    }
+
+    .method-step h4 {
+      font-size: 1.22rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .method-step p {
+      font-size: 1.02rem;
+      color: var(--text-muted);
+      margin-bottom: 1.2rem;
+    }
+
+    .method-photo {
+      width: 100%;
+      height: 120px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+    }
+
+    .method-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* ==========================================
+   6. CTA + FOOTER (idénticos a index.html)
+   ========================================== */
+    .cta-final-section {
+      padding: 6rem 5%;
+      background: var(--paper);
+    }
+
+    .hazard-strip {
+      height: 8px;
+      background: repeating-linear-gradient(-45deg, var(--sky), var(--sky) 14px, #ffffff 14px, #ffffff 28px);
+    }
+
+    .cta-box {
+      max-width: 920px;
+      margin: 0 auto;
+      background: var(--ink);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .cta-box-inner {
+      padding: 3.6rem 3rem;
+      text-align: center;
+    }
+
+    .cta-box h2 {
+      color: #fff;
+      font-size: clamp(1.7rem, 3vw, 2.3rem);
+      margin-bottom: 0.9rem;
+    }
+
+    .cta-box p {
+      color: var(--text-on-ink);
+      font-size: 1.1rem;
+      margin-bottom: 2.1rem;
+      max-width: 560px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+/* ==========================================
+       FOOTER DISEÑO MODERNO (REDUCIDO)
+       ========================================== */
+    .footer {
+      background: var(--ink);
+      color: var(--text-on-ink);
+      padding: 2.5rem 5% 1rem;
+      border-top: 1px solid var(--line-on-ink);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1.2fr 1fr;
+      gap: 3rem;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--line-on-ink);
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+    }
+
+    .footer-col p {
+      color: var(--text-on-ink);
+      opacity: 0.8;
+      font-size: 0.95rem;
+      margin-bottom: 1.4rem;
+      line-height: 1.5;
+    }
+
+    .footer-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--sky);
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+
+    .footer-col h3 {
+      font-family: var(--font-display);
+      color: #fff;
+      font-size: 1.15rem;
+      margin-bottom: 0.8rem; /* Margen reducido */
+    }
+
+    /* Lista de beneficios (Cotización) */
+    .footer-benefits-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      color: var(--text-on-ink);
+      opacity: 0.85;
+      font-size: 0.9rem;
+      margin-bottom: 0.9rem;
+      line-height: 1.45;
+    }
+
+    .footer-benefits-list svg {
+      width: 16px;
+      height: 16px;
+      color: var(--sky);
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+
+    /* Lista de contacto con iconos */
+    .footer-contact-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      color: var(--text-on-ink);
+      opacity: 0.85;
+      font-size: 0.95rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-contact-list svg {
+      width: 18px;
+      height: 18px;
+      color: var(--sky);
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+
+    /* Redes sociales */
+    .footer-social {
+      display: flex;
+      gap: 0.8rem;
+    }
+
+    .footer-social a {
+      width: 36px;
+      height: 36px;
+      border-radius: 6px;
+      background: rgba(109, 182, 217, 0.1);
+      border: 1px solid var(--line-on-ink);
+      color: var(--sky);
+      display: grid;
+      place-items: center;
+      transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .footer-social a svg {
+      width: 17px;
+      height: 17px;
+    }
+
+    .footer-social a:hover {
+      background: var(--sky);
+      color: var(--ink);
+      border-color: var(--sky);
+      transform: translateY(-3px);
+    }
+
+    /* Franja inferior (Copyright centrado) */
+    .footer-bottom {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding-top: 1rem;
+      text-align: center;
+    }
+
+    .footer-bottom p {
+      color: var(--text-on-ink);
+      opacity: 0.55;
+      font-size: 0.85rem;
+      font-family: var(--font-mono);
+      margin: 0;
+    }
+
+    /* ==========================================
+   7. RESPONSIVO
+   ========================================== */
+    @media (max-width:1024px) {
+      .mv-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .backing-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width:768px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        flex-direction: column;
+        background: var(--ink);
+        padding: 1.2rem 5%;
+        border-bottom: 1px solid var(--line-on-ink);
+        gap: 1.1rem;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .header-actions .btn-accent {
+        display: none;
+      }
+
+      .method-step {
+        flex: 0 0 220px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2.2rem;
+      }
+
+      .cta-box-inner {
+        padding: 2.6rem 1.6rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ==========================================
+     HEADER
+     ========================================== -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo">
+        <a href="#inicio">
+          <img src="img/logo.png" alt="Nombre de la Empresa" style="height: 80px;">
+        </a>
+      </div>
+
+      <nav>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="index.html#inicio">Inicio</a></li>
+          <li><a href="nosotros.html" class="active">Nosotros</a></li>
+          <li><a href="servicios.html">Servicios</a></li>
+          <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="https://wa.me/51940936948?text=Hola,%20estoy%20interesado%20en%20sus%20servicios%20de%20emergencia"
+          class="btn btn-accent" target="_blank" rel="noopener noreferrer">Hablar por WhatsApp</a>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ==========================================
+     BANNER DE PÁGINA
+     ========================================== -->
+    <section class="page-hero">
+      <div class="container" style="padding-left:0; padding-right:0;">
+        <p class="breadcrumb"><a href="index.html#inicio">Inicio</a> / Nosotros</p>
+        <h1>Formamos personas antes de formar protocolos.</h1>
+        <p>Conoce el propósito que guía a nuestro equipo, el respaldo que sostiene nuestro trabajo y la metodología con
+          la que convertimos capacitación en capacidad real de respuesta.</p>
+      </div>
+    </section>
+
+    <!-- ==========================================
+     MISIÓN Y VISIÓN
+     ========================================== -->
+    <section class="mv-section">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Propósito</p>
+          <h2>Misión y visión</h2>
+        </div>
+
+        <div class="mv-grid">
+          <div class="mv-card mv-card-mission">
+            <span class="mv-tag">01 · PROPÓSITO</span>
+            <div class="mv-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <circle cx="12" cy="12" r="9" />
+                <circle cx="12" cy="12" r="4.2" />
+                <circle cx="12" cy="12" r="0.6" fill="currentColor" />
+              </svg>
+            </div>
+            <h3>Misión</h3>
+            <p>Formar personas y equipos capaces de responder ante una emergencia con criterio, no solo con reflejo.
+              Brindamos capacitación, equipamiento y cuidado de la salud con estándares que se adaptan a cada sector,
+              cerrando la distancia entre saber qué hacer y poder hacerlo cuando realmente importa.</p>
+            <svg class="mv-watermark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+              <circle cx="12" cy="12" r="9" />
+              <circle cx="12" cy="12" r="4.2" />
+              <circle cx="12" cy="12" r="0.6" fill="currentColor" />
+            </svg>
+          </div>
+
+          <div class="mv-card mv-card-vision">
+            <span class="mv-tag">02 · HORIZONTE</span>
+            <div class="mv-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12Z" />
+                <circle cx="12" cy="12" r="2.6" />
+              </svg>
+            </div>
+            <h3>Visión</h3>
+            <p>Ser el referente nacional en cultura de prevención, presentes en cada sector productivo del país,
+              reconocidos porque nuestras brigadas responden y porque nuestra formación se sostiene mucho después de
+              terminado el curso.</p>
+            <svg class="mv-watermark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4">
+              <path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12Z" />
+              <circle cx="12" cy="12" r="2.6" />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+     NUESTRO RESPALDO
+     ========================================== -->
+    <section class="backing-section">
+      <div class="container">
+        <div class="section-head on-ink" style="margin-bottom:0;">
+          <p class="eyebrow on-ink">Experiencia comprobable</p>
+          <h2>Nuestro respaldo</h2>
+          <p>Lo que sostiene cada capacitación no es solo teoría: es trayectoria real en el manejo de emergencias.</p>
+        </div>
+
+        <div class="backing-grid">
+
+          <div class="backing-card">
+            <div class="backing-figure">20<small>años</small></div>
+            <h4>Experiencia comprobable</h4>
+            <p>Nos avala 20 años de experiencia comprobable en el manejo y control de emergencias.</p>
+          </div>
+
+          <div class="backing-card">
+            <div class="backing-figure">10<small>años</small></div>
+            <h4>Trayectoria en el rubro minero</h4>
+            <p>10 años de vida laboral en el rubro minero; experiencia que nos permitió conocer de cerca los riesgos y
+              sus consecuencias.</p>
+          </div>
+
+          <div class="backing-card">
+            <div class="backing-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <circle cx="12" cy="8" r="5" />
+                <path d="M9 12.5 7 21l5-2.5L17 21l-2-8.5" />
+              </svg>
+            </div>
+            <h4>Formación con estándares internacionales</h4>
+            <p>Nuestra formación nos ha permitido adquirir destrezas y habilidades acordes con estándares
+              internacionales, que direccionan nuestros criterios y metodologías.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+     METODOLOGÍA DE CAPACITACIÓN
+     ========================================== -->
+    <section class="method-section">
+      <div class="container">
+        <div class="method-head">
+          <div class="section-head" style="margin-bottom:0;">
+            <p class="eyebrow">Cómo trabajamos</p>
+            <h2>Nuestra metodología de capacitación</h2>
+            <p>Siete pasos que llevan a un equipo desde el diagnóstico inicial hasta la certificación y el seguimiento
+              posterior.</p>
+          </div>
+        </div>
+
+        <div class="method-marquee">
+          <div class="method-track" id="method-track">
+
+            <div class="method-step">
+              <div class="method-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <circle cx="10.5" cy="10.5" r="6.5" />
+                  <path d="M20 20l-4.8-4.8" />
+                </svg>
+              </div>
+              <span class="method-num">PASO 01</span>
+              <h4>Diagnóstico</h4>
+              <p>Identificamos las necesidades específicas de su empresa y los riesgos a los que está expuesto su
+                personal.</p>
+              <div class="method-photo"><img src="img/meto/diagnostico.png" alt="Diagnóstico de necesidades">
+              </div>
+            </div>
+
+            <div class="method-connector"><svg viewBox="0 0 26 12" fill="none" stroke="currentColor" stroke-width="1.6">
+                <path d="M0 6h22M17 1l5 5-5 5" />
+              </svg></div>
+
+            <div class="method-step">
+              <div class="method-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <rect x="5" y="3" width="14" height="18" rx="1.5" />
+                  <path d="M9 2.5h6v3H9z" />
+                  <path d="M8.5 11l2 2 4-4" />
+                </svg>
+              </div>
+              <span class="method-num">PASO 02</span>
+              <h4>Diseño del programa</h4>
+              <p>Elaboramos un plan de capacitación personalizado según los objetivos, riesgos y normativas aplicables.
+              </p>
+              <div class="method-photo"><img src="img/meto/diseño.png" alt="Diseño del programa"></div>
+            </div>
+
+            <div class="method-connector"><svg viewBox="0 0 26 12" fill="none" stroke="currentColor" stroke-width="1.6">
+                <path d="M0 6h22M17 1l5 5-5 5" />
+              </svg></div>
+
+            <div class="method-step">
+              <div class="method-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <rect x="3" y="4" width="18" height="12" rx="1.5" />
+                  <path d="M8 20h8M12 16v4" />
+                </svg>
+              </div>
+              <span class="method-num">PASO 03</span>
+              <h4>Capacitación teórica</h4>
+              <p>Impartimos contenidos actualizados con metodologías participativas y recursos audiovisuales.</p>
+              <div class="method-photo"><img src="img/meto/capa.png" alt="Capacitación teórica"></div>
+            </div>
+
+            <div class="method-connector"><svg viewBox="0 0 26 12" fill="none" stroke="currentColor" stroke-width="1.6">
+                <path d="M0 6h22M17 1l5 5-5 5" />
+              </svg></div>
+
+            <div class="method-step">
+              <div class="method-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path d="M7 12a5 5 0 0 1 10 0v3a2.5 2.5 0 0 1-5 0" />
+                  <path d="M9 20c0-2 1.5-3 3-3s3 1 3 3" />
+                </svg>
+              </div>
+              <span class="method-num">PASO 04</span>
+              <h4>Prácticas guiadas</h4>
+              <p>Desarrollamos habilidades mediante prácticas supervisadas con equipos y materiales especializados.</p>
+              <div class="method-photo"><img src="img/meto/practicas.png" alt="Prácticas guiadas"></div>
+            </div>
+
+            <div class="method-connector"><svg viewBox="0 0 26 12" fill="none" stroke="currentColor" stroke-width="1.6">
+                <path d="M0 6h22M17 1l5 5-5 5" />
+              </svg></div>
+
+            <div class="method-step">
+              <div class="method-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <circle cx="12" cy="6" r="2.4" />
+                  <path d="M6 21c0-4 2.7-6.5 6-6.5S18 17 18 21" />
+                  <path d="M16 10l4 2-3 5" />
+                </svg>
+              </div>
+              <span class="method-num">PASO 05</span>
+              <h4>Simulaciones de escenarios</h4>
+              <p>Creamos situaciones reales o simuladas para tomar decisiones acertadas bajo presión y fortalecer
+                competencias.</p>
+              <div class="method-photo"><img src="img/meto/simulacion.png" alt="Simulaciones de escenarios">
+              </div>
+            </div>
+
+            <div class="method-connector"><svg viewBox="0 0 26 12" fill="none" stroke="currentColor" stroke-width="1.6">
+                <path d="M0 6h22M17 1l5 5-5 5" />
+              </svg></div>
+
+            <div class="method-step">
+              <div class="method-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <rect x="5" y="3" width="14" height="18" rx="1.5" />
+                  <path d="M9 2.5h6v3H9z" />
+                  <path d="M8.5 12l2 2 5-5" />
+                </svg>
+              </div>
+              <span class="method-num">PASO 06</span>
+              <h4>Evaluación</h4>
+              <p>Evaluamos el desempeño teórico y práctico para asegurar la correcta adquisición de conocimientos y
+                habilidades.</p>
+              <div class="method-photo"><img src="img/meto/evaluacion.png" alt="Evaluación"></div>
+            </div>
+
+            <div class="method-connector"><svg viewBox="0 0 26 12" fill="none" stroke="currentColor" stroke-width="1.6">
+                <path d="M0 6h22M17 1l5 5-5 5" />
+              </svg></div>
+
+            <div class="method-step">
+              <div class="method-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <circle cx="12" cy="8" r="5" />
+                  <path d="M9 12.5 7 21l5-2.5L17 21l-2-8.5" />
+                </svg>
+              </div>
+              <span class="method-num">PASO 07</span>
+              <h4>Certificación y seguimiento</h4>
+              <p>Otorgamos certificados de participación y brindamos seguimiento para asegurar la aplicación de lo
+                aprendido.</p>
+              <div class="method-photo"><img src="img/meto/certificado.png"
+                  alt="Certificación y seguimiento"></div>
+            </div>
+
+
+            <div class="method-connector"><svg viewBox="0 0 26 12" fill="none" stroke="currentColor" stroke-width="1.6">
+                <path d="M0 6h22M17 1l5 5-5 5" />
+              </svg></div>
+
+
+            <div class="method-step">
+              <div class="method-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <circle cx="10.5" cy="10.5" r="6.5" />
+                  <path d="M20 20l-4.8-4.8" />
+                </svg>
+              </div>
+              <span class="method-num">PASO 01</span>
+              <h4>Diagnóstico</h4>
+              <p>Identificamos las necesidades específicas de su empresa y los riesgos a los que está expuesto su
+                personal.</p>
+              <div class="method-photo"><img src="img/meto/diagnostico.png" alt="Diagnóstico de necesidades">
+              </div>
+            </div>
+
+            <div class="method-connector"><svg viewBox="0 0 26 12" fill="none" stroke="currentColor" stroke-width="1.6">
+                <path d="M0 6h22M17 1l5 5-5 5" />
+              </svg></div>
+
+            <div class="method-step">
+              <div class="method-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <rect x="5" y="3" width="14" height="18" rx="1.5" />
+                  <path d="M9 2.5h6v3H9z" />
+                  <path d="M8.5 11l2 2 4-4" />
+                </svg>
+              </div>
+              <span class="method-num">PASO 02</span>
+              <h4>Diseño del programa</h4>
+              <p>Elaboramos un plan de capacitación personalizado según los objetivos, riesgos y normativas aplicables.
+              </p>
+              <div class="method-photo"><img src="img/meto/diseño.png" alt="Diseño del programa"></div>
+            </div>
+
+            <div class="method-connector"><svg viewBox="0 0 26 12" fill="none" stroke="currentColor" stroke-width="1.6">
+                <path d="M0 6h22M17 1l5 5-5 5" />
+              </svg></div>
+
+            <div class="method-step">
+              <div class="method-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <rect x="3" y="4" width="18" height="12" rx="1.5" />
+                  <path d="M8 20h8M12 16v4" />
+                </svg>
+              </div>
+              <span class="method-num">PASO 03</span>
+              <h4>Capacitación teórica</h4>
+              <p>Impartimos contenidos actualizados con metodologías participativas y recursos audiovisuales.</p>
+              <div class="method-photo"><img src="img/meto/capa.png" alt="Capacitación teórica"></div>
+            </div>
+
+            <div class="method-connector"><svg viewBox="0 0 26 12" fill="none" stroke="currentColor" stroke-width="1.6">
+                <path d="M0 6h22M17 1l5 5-5 5" />
+              </svg></div>
+
+            <div class="method-step">
+              <div class="method-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <path d="M7 12a5 5 0 0 1 10 0v3a2.5 2.5 0 0 1-5 0" />
+                  <path d="M9 20c0-2 1.5-3 3-3s3 1 3 3" />
+                </svg>
+              </div>
+              <span class="method-num">PASO 04</span>
+              <h4>Prácticas guiadas</h4>
+              <p>Desarrollamos habilidades mediante prácticas supervisadas con equipos y materiales especializados.</p>
+              <div class="method-photo"><img src="img/meto/practicas.png" alt="Prácticas guiadas"></div>
+            </div>
+
+            <div class="method-connector"><svg viewBox="0 0 26 12" fill="none" stroke="currentColor" stroke-width="1.6">
+                <path d="M0 6h22M17 1l5 5-5 5" />
+              </svg></div>
+
+            <div class="method-step">
+              <div class="method-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <circle cx="12" cy="6" r="2.4" />
+                  <path d="M6 21c0-4 2.7-6.5 6-6.5S18 17 18 21" />
+                  <path d="M16 10l4 2-3 5" />
+                </svg>
+              </div>
+              <span class="method-num">PASO 05</span>
+              <h4>Simulaciones de escenarios</h4>
+              <p>Creamos situaciones reales o simuladas para tomar decisiones acertadas bajo presión y fortalecer
+                competencias.</p>
+              <div class="method-photo"><img src="img/meto/simulacion.png" alt="Simulaciones de escenarios">
+              </div>
+            </div>
+
+            <div class="method-connector"><svg viewBox="0 0 26 12" fill="none" stroke="currentColor" stroke-width="1.6">
+                <path d="M0 6h22M17 1l5 5-5 5" />
+              </svg></div>
+
+            <div class="method-step">
+              <div class="method-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <rect x="5" y="3" width="14" height="18" rx="1.5" />
+                  <path d="M9 2.5h6v3H9z" />
+                  <path d="M8.5 12l2 2 5-5" />
+                </svg>
+              </div>
+              <span class="method-num">PASO 06</span>
+              <h4>Evaluación</h4>
+              <p>Evaluamos el desempeño teórico y práctico para asegurar la correcta adquisición de conocimientos y
+                habilidades.</p>
+              <div class="method-photo"><img src="img/meto/evaluacion.png" alt="Evaluación"></div>
+            </div>
+
+            <div class="method-connector"><svg viewBox="0 0 26 12" fill="none" stroke="currentColor" stroke-width="1.6">
+                <path d="M0 6h22M17 1l5 5-5 5" />
+              </svg></div>
+
+            <div class="method-step">
+              <div class="method-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <circle cx="12" cy="8" r="5" />
+                  <path d="M9 12.5 7 21l5-2.5L17 21l-2-8.5" />
+                </svg>
+              </div>
+              <span class="method-num">PASO 07</span>
+              <h4>Certificación y seguimiento</h4>
+              <p>Otorgamos certificados de participación y brindamos seguimiento para asegurar la aplicación de lo
+                aprendido.</p>
+              <div class="method-photo"><img src="img/meto/certificado.png"
+                  alt="Certificación y seguimiento"></div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+     CTA FINAL
+     ========================================== -->
+    <!-- <section class="cta-final-section">
+      <div class="cta-box">
+        <div class="hazard-strip"></div>
+        <div class="cta-box-inner">
+          <p class="eyebrow on-ink">Antes de que sea tarde</p>
+          <h2>¿Listo para llevar esta metodología a tu equipo?</h2>
+          <p>Conversemos sobre el diagnóstico inicial y armemos un programa a la medida de tu sector.</p>
+          <a href="https://wa.me/51999999999?text=Hola,%20quisiera%20más%20información%20sobre%20sus%20servicios"
+            class="btn btn-accent" target="_blank" rel="noopener noreferrer">Hablar con un asesor</a>
+        </div>
+      </div>
+    </section> -->
+
+  </main>
+
+  <!-- ==========================================
+     FOOTER
+     ========================================== -->
+ <footer class="footer">
+    <div class="footer-grid">
+      
+      <!-- Columna 1: Marca y descripción -->
+      <div class="footer-col">
+        <div class="footer-logo">
+          <div class="logo-mark">P</div>
+          <span class="logo-word">Pre Hospital Nursing & Healthcare</span>
+        </div>
+        <p>Expertos en formación de brigadas, equipamiento y cuidado de la salud. Compromiso total con la prevención y respuesta eficaz.</p>
+        
+        <div class="footer-social">
+          <a href="https://wa.me/51940936948" aria-label="WhatsApp" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Columna 2: Cotización -->
+      <div class="footer-col">
+        <span class="footer-eyebrow">Trabaja con nosotros</span>
+        <h3>Solicita tu cotización</h3>
+        <ul class="footer-benefits-list">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Nos adaptamos a los estándares y protocolos de cada cliente.</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Brindamos nuestras capacitaciones a nivel nacional.</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Diversidad de gamas en equipamiento, a elección del cliente.</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Pregunta por nuestros servicios de bien social Ad-Honorem.</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Columna 3: Contacto con iconos -->
+      <div class="footer-col">
+        <span class="footer-eyebrow">Soporte</span>
+        <h3>Contacto</h3>
+        <ul class="footer-contact-list">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Lima, Perú</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <span>info@prehospital.com</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <span>+51 999 999 999</span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Copyright centrado -->
+    <div class="footer-bottom">
+      <p>© 2026 Pre Hospital Nursing & Healthcare — Todos los derechos reservados</p>
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.getElementById('nav-links');
+    if (menuToggle && navLinks) {
+      menuToggle.addEventListener('click', () => {
+        const isOpen = navLinks.classList.toggle('active');
+        menuToggle.setAttribute('aria-expanded', isOpen);
+      });
+    }
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contacto · EmergenciasTech</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+
+/* ==========================================
+   0. TOKENS (idénticos al resto del sitio)
+   ========================================== */
+:root{
+  --ink:#0E3A52;
+  --ink-2:#164864;
+  --paper:#FFFFFF;
+  --paper-2:#FFFFFF;
+  --paper-tint:#EAF4F9;
+  --sky:#6DB6D9;
+  --sky-deep:#3E8FB8;
+  --accent:#FF7A55;
+  --accent-2:#FF9271;
+  --care:#3E8FB8;
+  --text-dark:#12283A;
+  --text-muted:#57707F;
+  --text-on-ink:#D9EAF2;
+  --line:rgba(14,58,82,0.14);
+  --line-on-ink:rgba(217,234,242,0.18);
+
+  --font-display:'Space Grotesk', sans-serif;
+  --font-body:'IBM Plex Sans', sans-serif;
+  --font-mono:'IBM Plex Mono', monospace;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font-body); color:var(--text-dark); background:var(--paper); line-height:1.6;}
+::selection{background:var(--sky); color:#fff;}
+a{text-decoration:none;color:inherit;}
+img{display:block;max-width:100%;}
+.logo img {
+  filter: brightness(0) invert(1);
+}
+ul{list-style:none;}
+
+.container{max-width:1180px;margin:0 auto;padding:0 5%;}
+
+.eyebrow{
+  font-family:var(--font-mono); font-size:0.78rem; letter-spacing:0.14em;
+  text-transform:uppercase; color:var(--sky-deep);
+  display:inline-flex; align-items:center; gap:0.5rem; margin-bottom:0.9rem;
+}
+.eyebrow::before{content:""; width:8px;height:8px;border-radius:50%;background:var(--sky); box-shadow:0 0 0 4px rgba(109,182,217,0.25);}
+.eyebrow.on-ink{color:var(--sky);}
+
+h1,h2,h3,h4{font-family:var(--font-display);color:var(--ink);line-height:1.15;}
+
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:0.55rem;
+  font-family:var(--font-body); font-weight:600; font-size:1rem;
+  padding:0.85rem 1.7rem; border-radius:3px; border:none; cursor:pointer;
+  transition:transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+.btn-accent{background:var(--accent); color:#fff;}
+.btn-accent:hover{background:var(--accent-2); transform:translateY(-2px); box-shadow:0 10px 24px rgba(255,122,85,0.32);}
+.btn-outline-ink{border:1px solid var(--line); color:var(--ink); background:transparent;}
+.btn-outline-ink:hover{border-color:var(--sky-deep); color:var(--sky-deep);}
+
+/* ==========================================
+   1. HEADER
+   ========================================== */
+.header{position:sticky; top:0; z-index:1000; background:var(--ink); border-bottom:1px solid var(--line-on-ink);}
+.header-inner{display:flex; align-items:center; justify-content:space-between; padding:0.9rem 5%; max-width:1180px; margin:0 auto;}
+.logo{display:flex; align-items:center; gap:0.6rem;}
+.logo-mark{width:34px;height:34px; display:grid; place-items:center; background:var(--sky); border-radius:6px; color:var(--ink); font-family:var(--font-display); font-weight:700; font-size:1rem;}
+.logo-word{font-family:var(--font-display); font-weight:700; color:#fff; font-size:1.15rem; letter-spacing:-0.01em;}
+.nav-links{display:flex; gap:2.2rem;}
+.nav-links a{font-family:var(--font-body); font-weight:500; font-size:1.4rem; color:var(--text-on-ink); position:relative; padding-bottom:4px;}
+.nav-links a::after{content:""; position:absolute; left:0; bottom:0; width:0; height:2px; background:var(--sky); transition:width 0.25s ease;}
+.nav-links a:hover::after{width:100%;}
+.nav-links a.active{color:#fff;}
+.nav-links a.active::after{width:100%;}
+.header-actions{display:flex; align-items:center; gap:1rem;}
+.menu-toggle{display:none; background:none; border:1px solid var(--line-on-ink); color:var(--text-on-ink); width:40px; height:40px; border-radius:4px; font-size:1.2rem; cursor:pointer;}
+
+/* ==========================================
+   2. BANNER
+   ========================================== */
+.page-hero{background:var(--ink); padding:3.4rem 5% 3.8rem;}
+.breadcrumb{font-family:var(--font-mono); font-size:0.82rem; color:var(--text-on-ink); opacity:0.7; margin-bottom:1.2rem;}
+.breadcrumb a{color:var(--sky);}
+.page-hero h1{color:#fff; font-size:clamp(2rem,3.6vw,2.9rem); max-width:680px; margin-bottom:1rem;}
+.page-hero p{color:var(--text-on-ink); font-size:1.08rem; max-width:560px;}
+
+/* ==========================================
+   3. CONTACTO — split info + formulario
+   ========================================== */
+.contact-section{padding:5.5rem 0 6.5rem;}
+.contact-grid{display:grid; grid-template-columns:0.85fr 1.15fr; gap:3.5rem; align-items:start;}
+
+/* --- Columna info --- */
+.contact-info-card{
+  background:var(--ink); color:var(--text-on-ink);
+  border-radius:12px; padding:2.6rem;
+}
+.contact-info-card h3{color:#fff; font-size:1.3rem; margin-bottom:1rem;}
+.contact-info-card > p{color:var(--text-on-ink); opacity:0.85; font-size:0.98rem; margin-bottom:2rem;}
+
+.info-item{display:flex; gap:1rem; align-items:flex-start; margin-bottom:1.5rem;}
+.info-icon{
+  flex-shrink:0; width:38px; height:38px; border-radius:8px;
+  background:rgba(109,182,217,0.18); border:1px solid rgba(109,182,217,0.4);
+  color:var(--sky); display:grid; place-items:center;
+}
+.info-icon svg{width:18px; height:18px;}
+.info-item h4{color:#fff; font-size:0.92rem; margin-bottom:0.2rem;}
+.info-item p{font-size:0.92rem; color:var(--text-on-ink); opacity:0.85;}
+.info-item a{color:var(--text-on-ink);}
+.info-item a:hover{color:var(--sky);}
+
+.info-divider{height:1px; background:var(--line-on-ink); margin:1.8rem 0;}
+.whatsapp-cta{width:100%; text-align:center;}
+
+/* --- Columna formulario --- */
+.contact-form-card{
+  background:var(--paper-tint); border:1px solid var(--line);
+  border-radius:12px; padding:2.8rem;
+}
+.contact-form-card h3{font-size:1.3rem; margin-bottom:0.5rem;}
+.contact-form-card > p{color:var(--text-muted); font-size:0.96rem; margin-bottom:2rem;}
+
+.form-row{display:grid; grid-template-columns:1fr 1fr; gap:1.2rem;}
+.field{margin-bottom:1.3rem;}
+.field label{
+  display:block; font-family:var(--font-mono); font-size:0.75rem;
+  letter-spacing:0.06em; text-transform:uppercase; color:var(--text-muted);
+  margin-bottom:0.5rem;
+}
+.field input, .field select, .field textarea{
+  width:100%; font-family:var(--font-body); font-size:0.98rem; color:var(--text-dark);
+  background:#fff; border:1px solid var(--line); border-radius:6px;
+  padding:0.8rem 0.95rem; transition:border-color 0.2s ease;
+}
+.field input:focus, .field select:focus, .field textarea:focus{
+  outline:none; border-color:var(--sky-deep);
+  box-shadow:0 0 0 3px rgba(62,143,184,0.15);
+}
+.field textarea{resize:vertical; min-height:120px;}
+.field .hint{font-size:0.8rem; color:var(--text-muted); margin-top:0.4rem;}
+
+.form-status{
+  display:none; font-size:0.9rem; padding:0.85rem 1rem; border-radius:6px; margin-bottom:1.3rem;
+}
+.form-status.show{display:block;}
+.form-status.error{background:rgba(255,122,85,0.12); color:#B4441F; border:1px solid rgba(255,122,85,0.35);}
+.form-status.ok{background:rgba(62,143,184,0.12); color:var(--ink); border:1px solid rgba(62,143,184,0.35);}
+
+/* ==========================================
+       FOOTER DISEÑO MODERNO (REDUCIDO)
+       ========================================== */
+    .footer {
+      background: var(--ink);
+      color: var(--text-on-ink);
+      padding: 2.5rem 5% 1rem;
+      border-top: 1px solid var(--line-on-ink);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1.2fr 1fr;
+      gap: 3rem;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--line-on-ink);
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+    }
+
+    .footer-col p {
+      color: var(--text-on-ink);
+      opacity: 0.8;
+      font-size: 0.95rem;
+      margin-bottom: 1.4rem;
+      line-height: 1.5;
+    }
+
+    .footer-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--sky);
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+
+    .footer-col h3 {
+      font-family: var(--font-display);
+      color: #fff;
+      font-size: 1.15rem;
+      margin-bottom: 0.8rem; /* Margen reducido */
+    }
+
+    /* Lista de beneficios (Cotización) */
+    .footer-benefits-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      color: var(--text-on-ink);
+      opacity: 0.85;
+      font-size: 0.9rem;
+      margin-bottom: 0.9rem;
+      line-height: 1.45;
+    }
+
+    .footer-benefits-list svg {
+      width: 16px;
+      height: 16px;
+      color: var(--sky);
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+
+    /* Lista de contacto con iconos */
+    .footer-contact-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      color: var(--text-on-ink);
+      opacity: 0.85;
+      font-size: 0.95rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-contact-list svg {
+      width: 18px;
+      height: 18px;
+      color: var(--sky);
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+
+    /* Redes sociales */
+    .footer-social {
+      display: flex;
+      gap: 0.8rem;
+    }
+
+    .footer-social a {
+      width: 36px;
+      height: 36px;
+      border-radius: 6px;
+      background: rgba(109, 182, 217, 0.1);
+      border: 1px solid var(--line-on-ink);
+      color: var(--sky);
+      display: grid;
+      place-items: center;
+      transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .footer-social a svg {
+      width: 17px;
+      height: 17px;
+    }
+
+    .footer-social a:hover {
+      background: var(--sky);
+      color: var(--ink);
+      border-color: var(--sky);
+      transform: translateY(-3px);
+    }
+
+    /* Franja inferior (Copyright centrado) */
+    .footer-bottom {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding-top: 1rem;
+      text-align: center;
+    }
+
+    .footer-bottom p {
+      color: var(--text-on-ink);
+      opacity: 0.55;
+      font-size: 0.85rem;
+      font-family: var(--font-mono);
+      margin: 0;
+    }
+/* ==========================================
+   5. RESPONSIVO
+   ========================================== */
+@media (max-width:1024px){
+  .contact-grid{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+}
+@media (max-width:768px){
+  .menu-toggle{display:block;}
+  .nav-links{display:none; position:absolute; top:100%; left:0; width:100%; flex-direction:column; background:var(--ink); padding:1.2rem 5%; border-bottom:1px solid var(--line-on-ink); gap:1.1rem;}
+  .nav-links.active{display:flex;}
+  .header-actions .btn-accent{display:none;}
+  .form-row{grid-template-columns:1fr;}
+  .contact-form-card, .contact-info-card{padding:1.8rem;}
+  .footer-grid{grid-template-columns:1fr; gap:2.2rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- ==========================================
+     HEADER
+     ========================================== -->
+<header class="header">
+  <div class="header-inner">
+    <a href="index.html#inicio" class="logo">
+      <div class="logo">
+          <a href="#inicio">
+            <img src="img/logo.png" alt="Nombre de la Empresa" style="height: 80px;">
+          </a>
+        </div>
+    </a>
+    <nav>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="index.html#inicio">Inicio</a></li>
+        <li><a href="nosotros.html">Nosotros</a></li>
+        <li><a href="servicios.html">Servicios</a></li>
+        <li><a href="contacto.html" class="active">Contacto</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <a href="https://wa.me/51940936948?text=Hola,%20estoy%20interesado%20en%20sus%20servicios%20de%20emergencia" class="btn btn-accent" target="_blank" rel="noopener noreferrer">Hablar por WhatsApp</a>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ==========================================
+     BANNER
+     ========================================== -->
+<section class="page-hero">
+  <div class="container" style="padding-left:0; padding-right:0;">
+    <h1>Hablemos de la seguridad de tu equipo.</h1>
+    <p>Escríbenos y te respondemos con una propuesta acorde a tu sector, tamaño de equipo y presupuesto.</p>
+  </div>
+</section>
+
+<!-- ==========================================
+     CONTACTO: INFO + FORMULARIO
+     ========================================== -->
+<section class="contact-section">
+  <div class="container contact-grid">
+
+    <!-- Columna: información -->
+    <div class="contact-info-card">
+      <p class="eyebrow on-ink">Canales directos</p>
+      <h3>Otras formas de contactarnos</h3>
+      <p>Si prefieres una respuesta inmediata, escríbenos directamente por WhatsApp.</p>
+
+      <div class="info-item">
+        <div class="info-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+        </div>
+        <div>
+          <h4>Correo</h4>
+          <p><a href="mailto:info@emergenciastech.com">info@emergenciastech.com</a></p>
+        </div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 9.7a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2Z"/></svg>
+        </div>
+        <div>
+          <h4>Teléfono</h4>
+          <p><a href="tel:+51999999999">+51 999 999 999</a></p>
+        </div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div>
+          <h4>Ubicación</h4>
+          <p>Lima, Perú — cobertura a nivel nacional</p>
+        </div>
+      </div>
+
+      <div class="info-item">
+        <div class="info-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.3 2"/></svg>
+        </div>
+        <div>
+          <h4>Horario de atención</h4>
+          <p>Lun. a Vie. 8:00 am – 6:00 pm</p>
+        </div>
+      </div>
+
+      <div class="info-divider"></div>
+
+    </div>
+
+    <!-- Columna: formulario -->
+    <div class="contact-form-card">
+      <h3>Envíanos un mensaje</h3>
+      
+      <div class="form-status" id="form-status"></div>
+
+      <form id="contact-form" novalidate>
+        <div class="form-row">
+          <div class="field">
+            <label for="nombre">Nombre completo *</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+          </div>
+          <div class="field">
+            <label for="correo">Correo electrónico *</label>
+            <input type="email" id="correo" name="correo" placeholder="tucorreo@empresa.com" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="field">
+            <label for="telefono">Teléfono</label>
+            <input type="tel" id="telefono" name="telefono" placeholder="+51 9xx xxx xxx">
+          </div>
+          <div class="field">
+            <label for="empresa">Empresa</label>
+            <input type="text" id="empresa" name="empresa" placeholder="Nombre de tu empresa (opcional)">
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="servicio">Servicio de interés</label>
+          <select id="servicio" name="servicio">
+            <option value="">Selecciona una opción</option>
+            <option value="Entrenamiento en Primeros Auxilios">Entrenamiento en Primeros Auxilios</option>
+            <option value="Formación de Brigadas">Formación de Brigadas de Respuesta a Emergencias</option>
+            <option value="Botiquines y Estaciones de Emergencia">Botiquines, Maletines y Estaciones de Emergencia</option>
+            <option value="Alquiler de Equipos de Entrenamiento">Alquiler de Equipos de Entrenamiento</option>
+            <option value="Cuidados Integrales de Enfermería">Cuidados Integrales de Enfermería</option>
+            <option value="Otro">Otro / no estoy seguro</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="mensaje">Mensaje *</label>
+          <textarea id="mensaje" name="mensaje" placeholder="Cuéntanos brevemente qué necesitas: tamaño de tu equipo, sector, fechas, etc." required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-accent" style="width:100%;">Enviar mensaje</button>
+        
+      </form>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<!-- ==========================================
+     FOOTER
+     ========================================== -->
+<footer class="footer">
+    <div class="footer-grid">
+      
+      <!-- Columna 1: Marca y descripción -->
+      <div class="footer-col">
+        <div class="footer-logo">
+          <div class="logo-mark">P</div>
+          <span class="logo-word">Pre Hospital Nursing & Healthcare</span>
+        </div>
+        <p>Expertos en formación de brigadas, equipamiento y cuidado de la salud. Compromiso total con la prevención y respuesta eficaz.</p>
+        
+        <div class="footer-social">
+          <a href="https://wa.me/51940936948" aria-label="WhatsApp" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Columna 2: Cotización -->
+      <div class="footer-col">
+        <span class="footer-eyebrow">Trabaja con nosotros</span>
+        <h3>Solicita tu cotización</h3>
+        <ul class="footer-benefits-list">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Nos adaptamos a los estándares y protocolos de cada cliente.</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Brindamos nuestras capacitaciones a nivel nacional.</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Diversidad de gamas en equipamiento, a elección del cliente.</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <span>Pregunta por nuestros servicios de bien social Ad-Honorem.</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Columna 3: Contacto con iconos -->
+      <div class="footer-col">
+        <span class="footer-eyebrow">Soporte</span>
+        <h3>Contacto</h3>
+        <ul class="footer-contact-list">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Lima, Perú</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            <span>info@prehospital.com</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <span>+51 999 999 999</span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Copyright centrado -->
+    <div class="footer-bottom">
+      <p>© 2026 Pre Hospital Nursing & Healthcare — Todos los derechos reservados</p>
+    </div>
+  </footer>
+
+<script>
+  const menuToggle = document.getElementById('menu-toggle');
+  const navLinks = document.getElementById('nav-links');
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('active');
+      menuToggle.setAttribute('aria-expanded', isOpen);
+    });
+  }
+
+  // Pre-selecciona el servicio si llega por ?servicio=... desde la página de Servicios
+  const params = new URLSearchParams(window.location.search);
+  const servicioParam = params.get('servicio');
+  const servicioSelect = document.getElementById('servicio');
+  if (servicioParam && servicioSelect) {
+    const match = [...servicioSelect.options].find(opt => opt.value === servicioParam);
+    if (match) match.selected = true;
+  }
+
+  // Envío del formulario vía mailto (sitio estático, sin backend)
+  const form = document.getElementById('contact-form');
+  const status = document.getElementById('form-status');
+  const DEST_EMAIL = 'info@emergenciastech.com';
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    status.className = 'form-status';
+
+    const nombre = form.nombre.value.trim();
+    const correo = form.correo.value.trim();
+    const mensaje = form.mensaje.value.trim();
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!nombre || !correo || !mensaje) {
+      status.textContent = 'Completa los campos obligatorios: nombre, correo y mensaje.';
+      status.classList.add('show', 'error');
+      return;
+    }
+    if (!emailPattern.test(correo)) {
+      status.textContent = 'Ingresa un correo electrónico válido.';
+      status.classList.add('show', 'error');
+      return;
+    }
+
+    const telefono = form.telefono.value.trim();
+    const empresa = form.empresa.value.trim();
+    const servicio = form.servicio.value;
+
+    const subject = `Consulta desde la web — ${nombre}`;
+    const bodyLines = [
+      `Nombre: ${nombre}`,
+      `Correo: ${correo}`,
+      telefono ? `Teléfono: ${telefono}` : null,
+      empresa ? `Empresa: ${empresa}` : null,
+      servicio ? `Servicio de interés: ${servicio}` : null,
+      '',
+      'Mensaje:',
+      mensaje
+    ].filter(Boolean).join('\n');
+
+    const mailtoLink = `mailto:${DEST_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines)}`;
+
+    status.textContent = 'Abriendo tu aplicación de correo con el mensaje listo…';
+    status.classList.add('show', 'ok');
+    window.location.href = mailtoLink;
+  });
+</script>
+
+</body>
+</html>
